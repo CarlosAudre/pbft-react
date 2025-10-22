@@ -1,0 +1,48 @@
+.container {
+  padding: 20px;
+  background: rgba(30, 41, 59, 0.85);
+  border-radius: 16px;
+  color: white;
+  max-width: 500px;
+  margin: auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.formGroup {
+  margin-bottom: 12px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.input, .select {
+  width: 200px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #4a5568;
+  background: #1e293b;
+  color: white;
+}
+
+.sendBtn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #22c55e;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.sendBtn:hover {
+  background: #16a34a;
+}

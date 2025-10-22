@@ -1,0 +1,35 @@
+.container {
+  padding: 20px;
+  background: rgba(30, 41, 59, 0.9);
+  border-radius: 16px;
+  color: white;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+  color: #66a3ff;
+}
+
+.item {
+  margin-bottom: 10px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.confirmed {
+  color: #22c55e; /* verde */
+  font-weight: 700;
+}
+
+.rejected {
+  color: #ef4444; /* vermelho */
+  font-weight: 700;
+}

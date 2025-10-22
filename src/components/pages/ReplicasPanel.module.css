@@ -1,0 +1,42 @@
+/* ReplicasPanel.module.css */
+.container{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.replicaItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(30, 41, 59, 0.85);
+    margin-bottom: 10px;
+    color: white;
+}
+
+.toggleBtn {
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.honest {
+    background: #22c55e;
+    /* verde */
+    color: white;
+}
+
+.malicious {
+    background: #ef4444;
+    /* vermelho */
+    color: white;
+}
+
+.refreshBtn{
+    margin-top: 10px;
+}

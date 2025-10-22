@@ -1,0 +1,11 @@
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #002b5b, #004b8d, #0074d9);
+  min-height: 100vh;        
+  display: flex;
+  justify-content: center;   
+  align-items: center;   
+  padding: 32px 12px;        
+}

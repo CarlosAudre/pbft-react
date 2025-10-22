@@ -1,0 +1,63 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    background: rgba(30, 41, 59, 0.8);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    color: white;
+    margin-bottom: 20px;
+}
+
+.titulo {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.botao {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+    color: white;
+}
+
+.botaoAzul {
+    background: linear-gradient(90deg, #007bff, #005fcc);
+}
+
+.botaoAzul:hover {
+    background: linear-gradient(90deg, #3399ff, #007bff);
+}
+
+.botaoVerde {
+    background: linear-gradient(90deg, #28a745, #218838);
+}
+
+.botaoVerde:hover {
+    background: linear-gradient(90deg, #5cd65c, #28a745);
+}
+
+.botaoRoxo {
+    background: linear-gradient(90deg, #6f42c1, #5936a9);
+}
+
+.botaoRoxo:hover {
+    background: linear-gradient(90deg, #9b6fd1, #6f42c1);
+}
+
+.card {
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
