@@ -1,19 +1,24 @@
-// src/pages/HomePage.jsx
 import React, { useState } from "react";
 import ReplicasPanel from "./ReplicasPanel";
-import VotePanel from "./VotePanel";
-import ResultPanel from "./ResultPanel";
+import TransacaoPanel from "./TransacaoPanel";
+import LedgerPanel from "./LedgerPanel";
 import styles from "./HomePage.module.css";
 
 export default function HomePage() {
   const [selectedTab, setSelectedTab] = useState("replicas");
-  const [voteResult, setVoteResult] = useState(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const tabs = [
     { id: "replicas", label: "Réplicas" },
-    { id: "votar", label: "Votar" },
-    { id: "resultado", label: "Resultado" },
+    { id: "transacao", label: "Nova Transação" },
+    { id: "ledger", label: "Ledger" },
   ];
+
+
+  const handleTransacaoAdded = () => {
+    setRefreshKey((k) => k + 1); // força re-fetch no LedgerPanel
+    setSelectedTab("ledger"); // opcional: muda automaticamente pra aba do ledger
+  };
 
   return (
     <div className={styles.container}>
@@ -24,9 +29,7 @@ export default function HomePage() {
           <button
             key={tab.id}
             onClick={() => setSelectedTab(tab.id)}
-            className={`${styles.botao} ${
-              selectedTab === tab.id ? styles.botaoAzul : "bg-gray-700 text-white"
-            }`}
+            className={`${styles.botao} ${selectedTab === tab.id ? styles.botaoAzul : "bg-gray-700 text-white"}`}
           >
             {tab.label}
           </button>
@@ -35,8 +38,8 @@ export default function HomePage() {
 
       <div className={styles.card}>
         {selectedTab === "replicas" && <ReplicasPanel />}
-        {selectedTab === "votar" && <VotePanel onResult={setVoteResult} />}
-        {selectedTab === "resultado" && <ResultPanel result={voteResult} />}
+        {selectedTab === "transacao" && <TransacaoPanel onAdded={handleTransacaoAdded} />}
+        {selectedTab === "ledger" && <LedgerPanel refreshKey={refreshKey} />}
       </div>
     </div>
   );

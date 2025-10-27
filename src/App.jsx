@@ -1,9 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import ReplicasPanel from "./components/pages/ReplicasPanel";
-import VotePanel from "./components/pages/VotePanel";
-import ResultPanel from "./components/pages/ResultPanel";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./components/pages/HomePage";
 
 function App() {
