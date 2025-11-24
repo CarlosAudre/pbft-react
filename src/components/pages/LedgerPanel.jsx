@@ -7,6 +7,8 @@ export default function LedgerPanel({ refreshKey = 0 }) {
   const [loading, setLoading] = useState(false);
   const [erroIntegridade, setErroIntegridade] = useState(false);
 
+
+
   const fetchLedger = async () => {
     try {
       setLoading(true);
@@ -23,6 +25,19 @@ export default function LedgerPanel({ refreshKey = 0 }) {
   useEffect(() => {
     fetchLedger();
   }, [refreshKey]);
+
+  const currencyFormatter = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  const formatCurrency = (value) => {
+    // tenta normalizar (string -> número), senão mostra '-' como fallback
+    if (value === null || value === undefined || value === "") return "-";
+    const n = typeof value === "number" ? value : Number(String(value).replace(",", "."));
+    return Number.isFinite(n) ? currencyFormatter.format(n) : "-";
+  };
+
 
   return (
     <div className={styles.container}>
@@ -52,7 +67,7 @@ export default function LedgerPanel({ refreshKey = 0 }) {
               <td>{t.id}</td>
               <td>{t.remetente}</td>
               <td>{t.destinatario}</td>
-              <td>{t.valor}</td>
+               <td>{formatCurrency(t.valor)}</td>
             </tr>
           ))}
         </tbody>

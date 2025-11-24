@@ -9,13 +9,14 @@ export default function TransacaoPanel({ onAdded }) {
   const [loading, setLoading] = useState(false);
   const [replicas, setReplicas] = useState([]);
 
-  // busca réplicas para calcular honestos/f
+  const [erro, setErro] = useState(""); 
+
   const fetchReplicas = async () => {
     try {
       const data = await useApi("/api/pbft/replicas");
       setReplicas(Array.isArray(data) ? data : []);
     } catch (err) {
-      alert("Erro ao buscar réplicas: " + (err.message || err));
+      setErro("Erro ao buscar réplicas: " + (err.message || err));
     }
   };
 
@@ -24,18 +25,22 @@ export default function TransacaoPanel({ onAdded }) {
   }, []);
 
   const enviarTransacao = async () => {
-    if (!remetente || !destinatario || !valor) return alert("Preencha todos os campos");
+    if (!remetente || !destinatario || !valor) {
+      return setErro("Preencha todos os campos!");
+    }
 
     const honestos = replicas.filter(r => !r.malicioso).length;
     const f = replicas.filter(r => r.malicioso).length;
 
-    // checagem PBFT local (opcional)
     if (honestos < 3 * f + 1) {
-      return alert(`Não é possível enviar a transação. Nós honestos insuficientes para PBFT (honestos=${honestos}, f=${f})`);
+      return setErro(
+        `Não é possível enviar a transação: nós honestos insuficientes (honestos=${honestos}, f=${f})`
+      );
     }
 
     try {
       setLoading(true);
+      setErro(""); // limpa erro ao tentar enviar
 
       const transacao = await useApi("/pbft/client", {
         method: "POST",
@@ -48,22 +53,23 @@ export default function TransacaoPanel({ onAdded }) {
       setValor("");
 
       if (onAdded) onAdded(transacao);
-      else alert("Transação enviada!");
     } catch (err) {
-      // captura erro do backend e exibe mensagem detalhada
       let msg = "Erro ao enviar transação";
       if (err.response && err.response.message) msg += ": " + err.response.message;
       else if (err.message) msg += ": " + err.message;
-      alert(msg);
+      setErro(msg);
     } finally {
       setLoading(false);
-      fetchReplicas(); // atualiza lista de réplicas
+      fetchReplicas();
     }
   };
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Nova Transação</h2>
+
+      {/* CAIXINHA DE ERRO BONITINHA */}
+      {erro && <div className={styles.errorBox}>{erro}</div>}
 
       <div className={styles.formGroup}>
         <label>Remetente</label>
